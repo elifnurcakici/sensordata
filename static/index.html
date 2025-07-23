@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerçek Zamanlı Sensör Verisi</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4947bf, #5b1414, #1c19c8);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            text-align: center;
+            margin: 20px;
+            font-size: 2rem;
+        }
+        .sensor-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
+        }
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.1);
+        }
+        table th, table td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        table th {
+            background: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+        @media (max-width: 900px) {
+            .sensor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🌡️ Gerçek Zamanlı Sensör İzleme</h1>
+
+    <div class="sensor-container">
+        <!-- Sıcaklık -->
+        <div class="card">
+            <h2>Sıcaklık (°C)</h2>
+            <canvas id="tempChart"></canvas>
+            <table id="temperatureTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Değer (°C)</th>
+                        <th>Zaman</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Nem -->
+        <div class="card">
+            <h2>Nem (%)</h2>
+            <canvas id="humidityChart"></canvas>
+            <table id="humidityTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Değer (%)</th>
+                        <th>Zaman</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Basınç -->
+        <div class="card" style="grid-column: span 2;">
+            <h2>Basınç (hPa)</h2>
+            <canvas id="pressureChart"></canvas>
+            <table id="pressureTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Değer (hPa)</th>
+                        <th>Zaman</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+
